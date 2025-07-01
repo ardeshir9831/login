@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ورود به سایت</title>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Vazirmatn',sans-serif}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)}
+    .card{width:340px;background:#fff;border-radius:18px;padding:2rem;box-shadow:0 10px 25px rgba(0,0,0,.1);animation:fadeIn .9s ease forwards;opacity:0;transform:translateY(20px)}
+    @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+    @keyframes shake{10%,90%{transform:translateX(-1px)}20%,80%{transform:translateX(2px)}30%,50%,70%{transform:translateX(-4px)}40%,60%{transform:translateX(4px)}}
+    .shake{animation:shake .3s}
+    .card h2{font-weight:600;text-align:center;margin-bottom:1.5rem}
+    .input-group{position:relative;margin-bottom:1.2rem}
+    .input-group i{position:absolute;top:50%;transform:translateY(-50%);right:14px;color:#999}
+    .input-group input{width:100%;padding:12px 44px 12px 12px;border:2px solid #e5e5e5;border-radius:12px;font-size:15px;transition:.3s}
+    .input-group input:focus{border-color:#4facfe;outline:none}
+    .btn{display:block;width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);color:#fff;font-size:16px;font-weight:600;cursor:pointer;transition:.3s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+    .error-msg{color:#e74c3c;font-size:14px;margin-bottom:1rem;display:none}
+  </style>
+</head>
+<body>
+  <form class="card" id="loginForm" autocomplete="off">
+    <h2>ورود به سایت</h2>
+    <p class="error-msg" id="errorMsg">نام کاربری یا گذرواژه را وارد کنید</p>
+    <div class="input-group">
+      <i class="fas fa-user"></i>
+      <input type="text" id="username" placeholder="نام کاربری" required>
+    </div>
+    <div class="input-group">
+      <i class="fas fa-lock"></i>
+      <input type="password" id="password" placeholder="گذرواژه" required>
+    </div>
+    <button class="btn" type="submit">ورود</button>
+  </form>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const user=document.getElementById('username').value.trim();
+      const pass=document.getElementById('password').value.trim();
+      const error=document.getElementById('errorMsg');
+      if(!user||!pass){
+        error.style.display='block';
+        this.classList.add('shake');
+        setTimeout(()=>{this.classList.remove('shake')},500);
+        return;
+      }
+      // TODO: Replace with real authentication logic
+      alert('خوش آمدید، '+user+'!');
+      error.style.display='none';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
